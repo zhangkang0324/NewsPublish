@@ -8,7 +8,7 @@ namespace NewsPublish.Model.Entity {
             this.NewsComments = new HashSet<NewsComment>();
         }
         public int Id { get; set; }
-        public int  NewsClassifyId{ get; set; }
+        public int NewsClassifyId { get; set; }
         public string Title { get; set; }
         public string Image { get; set; }
         public string Contents { get; set; }
