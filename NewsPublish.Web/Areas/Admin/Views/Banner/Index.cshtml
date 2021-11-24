@@ -29,7 +29,7 @@
     <div class="pd-20">
 
         <div class="cl pd-5 bg-1 bk-gray mt-20">
-            <span class="l"><a href="javascript:;" onClick="user_add('550','300','添加Banner','banner-add.html')" class="btn btn-primary radius"><i class="icon-plus"></i> 添加Banner</a></span>
+            <span class="l"><a href="javascript:;" onClick="user_add('550','300','添加Banner','/Admin/Banner/BannerAdd')" class="btn btn-primary radius"><i class="icon-plus"></i> 添加Banner</a></span>
 
         </div>
         <table class="table table-border table-bordered table-hover table-bg table-sort">
@@ -53,15 +53,6 @@
                             <td class="f-14"><a title="删除" href="javascript:;" onClick="del(this,'1')" class="ml-5" style="text-decoration:none"><i class="icon-trash"></i></a></td>
                         </tr>
                     }
-
-                <tr class="text-c">
-                    <td>1</td>
-                    <td><image src="" style="height:100px;width:200px" /></td>
-                    <td><a href="http://www.baidu.com" target="_blank">http://www.baidu.com</a></td>
-                    <td>2015.01.16 22:12:24</td>
-                    <td class="text-l">这是一个备注</td>
-                    <td class="f-14"><a title="删除" href="javascript:;" onClick="del(this,'1')" class="ml-5" style="text-decoration:none"><i class="icon-trash"></i></a></td>
-                </tr>
             </tbody>
         </table>
         <div id="pageNav" class="pageNav"></div>
@@ -76,9 +67,27 @@
     <script>
         function del(obj,id){
             layer.confirm('确认要删除吗？',function(index){
-                $(obj).parents("tr").remove();
-                layer.msg('已删除!',1);
+                /*$(obj).parents("tr").remove();
+                layer.msg('已删除!',1);*/
+                 $.ajax({
+                type:'post',
+                async: true,
+                url:'/Admin/Banner/DelBanner',
+                data:{id:id},
+                success:function(data){
+                    if(data.code === 200){
+                        layer.msg(data.result,1);
+                        reload();
+                    }else{
+                        layer.msg(data.result,1);
+                    }
+                }
+             });
             });
+        }
+
+        function reload(){
+            location.replace(location.href);
         }
     </script>
 </body>
