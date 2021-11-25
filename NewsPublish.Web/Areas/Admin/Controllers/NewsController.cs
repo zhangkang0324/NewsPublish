@@ -21,6 +21,10 @@ namespace NewsPublish.Web.Areas.Admin.Controllers {
             return View(classify);
         }
 
+        public ActionResult NewsClassifyAdd() {
+            return View();
+        }
+
         [HttpPost]
         public JsonResult NewsClassifyAdd(AddNewsClassify newsClassify) {
             if (string.IsNullOrEmpty(newsClassify.Name)) {
