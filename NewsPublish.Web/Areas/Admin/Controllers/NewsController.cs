@@ -32,5 +32,17 @@ namespace NewsPublish.Web.Areas.Admin.Controllers {
             }
             return Json(_newsService.AddNewsClassify(newsClassify));
         }
+
+        public ActionResult NewsClassifyEdit(int id) {
+            return View(_newsService.GetOneNewsClassify(id));
+        }
+
+        [HttpPost]
+        public JsonResult NewsClassifyEdit(EditNewsClassify newsClassify) {
+            if (string.IsNullOrEmpty(newsClassify.Name)) {
+                return Json(new ResponseModel { code = 0, result = "请输入新闻类名称" });
+            }
+            return Json(_newsService.EditNewsClassify(newsClassify));
+        }
     }
 }
